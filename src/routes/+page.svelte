@@ -3,7 +3,7 @@
     import * as Tabs from '$lib/components/ui/tabs/index';
     import * as AlertDialog from '$lib/components/ui/alert-dialog/index';
     import { Checkbox } from "$lib/components/ui/checkbox/index";
-    import { Button } from "$lib/components/ui/button/index";
+    import { Button, buttonVariants } from "$lib/components/ui/button/index";
     import { Label } from "$lib/components/ui/label/index";
     import { Input } from "$lib/components/ui/input/index";
     import { type ValueWrapper, type TabWrapper, type DataState, defaultDataState, convertMoneyType } from "$lib";
@@ -65,8 +65,8 @@
 <!--The alert dialog component-->
 {#snippet alertDialog()}
     <AlertDialog.Root bind:open>
-        <AlertDialog.Trigger>
-            <Button variant='destructive'>Reset</Button>
+        <AlertDialog.Trigger class={buttonVariants({ variant: "destructive" })}>
+            Reset
         </AlertDialog.Trigger>
         <AlertDialog.Content class='max-w-xs'>
             <AlertDialog.Header>
@@ -86,7 +86,7 @@
     <Card.Root class='min-w-sm'>
         <Card.Header class='my-auto'>
             <div class={['text-3xl font-semibold', {'text-red-500': parmode && sum < 0, 'text-green-500': parmode && sum >= 0}]}>
-                ${sum.toFixed(2)}
+                ${Math.abs(sum).toFixed(2)}
                 {#if parmode && sum < 0}
                     under
                 {:else if parmode && sum >= 0}
